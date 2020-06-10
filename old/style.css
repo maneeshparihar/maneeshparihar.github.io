@@ -1,3 +1,7 @@
-.helloworld{
-    color: yellow;
+.customH1{
+    color: green;
+}
+
+h1{
+    color: red;
 }

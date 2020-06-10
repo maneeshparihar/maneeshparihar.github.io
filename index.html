@@ -1,18 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="style2.css">
+<title>Page Title</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-    <h1 class="customH1">This is my first page and second edit of HTML</h1>
-    <h1 >Second heading</h1>
-    <p>This is a paragraph text. Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Quibusdam in totam possimus voluptates et quaerat aperiam molestias neque ea facilis. 
-        Soluta placeat iure ut, provident porro assumenda magni sapiente fugit.</p>
-    <img src="pic.jpg" >
+
+    <section class="section " style="width: 50%;">
+        <div class="container is-fluid">
+            <h2>Form for saving link to saved.io</h2>
+            <form action="http://devapi.saved.io/bookmarks/" method="POST">
+                <input type="text" value="EGBolCOXfcg28s2etcWnrnzYMFCr39Jx" hidden name="key">
+                <input type="text" value="ojYFv3SfBPPS46t2vFfI0DBJtl29c22t" hidden name="devkey">
+                
+                <div class="mt-4">
+                    <label class="mt-4" for="id_url">URL</label>
+                    <input type="text" class="input is-info" placeholder="URL" id="id_url" required name="url"> 
+                </div>
+
+                <div class="mt-4">
+                    <label class="mt-4" for="id_url">Title for the link</label>
+                    <input type="text" class="input is-info" placeholder="Title" id="id_title" required name="title">
+                </div>
+                <div class="mt-4">
+                    <label  for="id_url">List (optional)</label>
+                    <input type="text" class="input is-info" placeholder="List (optional)" id="id_list" name="list">
+                </div>
+
+                <button type="submit" class="button is-info is-outlined mt-5">Add to saved.io</button>
+            </form>
+            <section class="section">
+        <div class="container">
+
 </body>
 </html>
