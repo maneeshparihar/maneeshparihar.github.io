@@ -9,19 +9,20 @@
 
     <section class="section " style="width: 50%;">
         <div class="container is-fluid">
-            <h2>Form for saving link to saved.io</h2>
-            <form action="http://devapi.saved.io/bookmarks/" method="POST">
+            <h2 class="title is-3">Form for saving link to saved.io</h2>
+
+            <form onsubmit="submitForm(event, this); return false"  >
                 <input type="text" value="EGBolCOXfcg28s2etcWnrnzYMFCr39Jx" hidden name="key">
                 <input type="text" value="ojYFv3SfBPPS46t2vFfI0DBJtl29c22t" hidden name="devkey">
                 
                 <div class="mt-4">
                     <label class="mt-4" for="id_url">URL</label>
-                    <input type="text" class="input is-info" placeholder="URL" id="id_url" required name="url"> 
+                    <input type="text" class="input is-info" placeholder="URL" id="id_url"  name="url"> 
                 </div>
 
                 <div class="mt-4">
                     <label class="mt-4" for="id_url">Title for the link</label>
-                    <input type="text" class="input is-info" placeholder="Title" id="id_title" required name="title">
+                    <input type="text" class="input is-info" placeholder="Title" id="id_title"  name="title">
                 </div>
                 <div class="mt-4">
                     <label  for="id_url">List (optional)</label>
@@ -30,8 +31,55 @@
 
                 <button type="submit" class="button is-info is-outlined mt-5">Add to saved.io</button>
             </form>
+
+            <div  class="mt-2">
+                <span id="response"></span>
+            </div>
+
             <section class="section">
         <div class="container">
 
 </body>
+
+<script>
+
+    function submitForm(e, formElement){  
+        // e.preventDefault();
+        console.log("form element", formElement)
+               
+
+        var key = "EGBolCOXfcg28s2etcWnrnzYMFCr39Jx";
+        var devkey = "ojYFv3SfBPPS46t2vFfI0DBJtl29c22t";
+        var url = document.getElementById("id_url").value;
+        var title = document.getElementById("id_title").value;
+        var list = document.getElementById("id_list").value;
+        postString = "key="+key+"&devkey="+devkey+"&url="+url+"&title="+title+"&list="+list;
+
+        console.log("post string", postString);
+
+        var xhr = new XMLHttpRequest();
+        console.log("XHR", xhr)
+        // xhr.open("GET", "https://api.github.com/users/"); 
+        
+        xhr.onreadystatechange = function(state) {
+            console.log("state changed", state);
+            document.getElementById("response").innerHTML = xhr.responseText;
+            // if (this.readyState == 4 ) {
+            //     // Typical action to be performed when the document is ready:
+            //     document.getElementById("response").innerHTML = xhr.responseText;
+            // }
+        }
+        
+        xhr.open("POST", "http://devapi.saved.io/bookmarks/", true); 
+        
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        // xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+        xhr.send(postString);
+        // xhr.send();
+        };
+
+
+</script>
+
+
 </html>
