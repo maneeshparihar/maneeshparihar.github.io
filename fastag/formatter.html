@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-size: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        #input{
+            width: 500px;
+            height: 40px;
+            font-size: 20px;
+            padding: 10px;
+        }
+
+        button {
+            background-color: #534caf; /* Green */
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 20px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 12px;}
+
+        div{
+            font-size: 20px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+    </style>
+
+</head>
+<body>
+    <br>
+    
+    <input id="input" placeholder="Enter raw string here">
+    <br><br>
+
+   
+    <button onclick="btnPress()">Press for formatting</button>
+    <div id="output"></div>
+    <div style="color: red" id="error1"></div>
+    <div style="color: red" id="error2"></div>
+    <script>
+        function btnPress(){
+            
+            
+            // remove all spaces within string and make upper case 
+            let input = document.getElementById("input").value;
+            let rawoutput = input.trim().toUpperCase().replace(/\s/g, '');
+            
+            
+            document.getElementById("output").innerHTML = "<b>Formatted Output:</b> "+rawoutput;
+            document.getElementById("output").innerHTML+='<div>'+ "Output length : "+rawoutput.length+' characters</div>';
+            console.log(rawoutput)
+
+            if(rawoutput.length < 24){
+                document.getElementById("error1").innerHTML = "<div>Error: Characters are less than 24</div>";
+                // return;
+            } else if (rawoutput.length > 24) {
+                document.getElementById("error1").innerHTML = "<div>Error: Characters must be less than 24</div>";
+                // pick first 24 characters
+                let truncated = rawoutput.substring(0, 24);
+                document.getElementById("output").innerHTML+='<div>'+ "<b>Formatted and truncated to 24 : </b> "+truncated+' </div>';
+            }
+            else if (rawoutput.length == 24){
+                document.getElementById("error1").innerHTML = "";
+            }
+
+            // input must start from e2
+            if(rawoutput[0] != 'E' || rawoutput[1] != '2'){
+                document.getElementById("error2").innerHTML = "<div>Error: Must start with E2</div>";
+                // return;
+            }else if (rawoutput[0] == 'E' && rawoutput[1] == '2'){
+                document.getElementById("error2").innerHTML = "";
+            }
+
+
+            // console.log(input);
+            
+        }
+
+
+    </script>
+</body>
+</html>
